@@ -1,0 +1,51 @@
+// #
+/ /
+* *
++ +
+- -
+= =
+! !
+< <
+> >
+& &
+$ $
+# #
+| |
+{ {
+} }
+( (
+) )
+[ ]
+] ]
+_ _
+% %
+" "
+' '
+\ \
+n n
+t t
+^ ^
+~ ~
+@ @
+, ,
+; ;
+. .
+: :
+<- =
+proceso def
+si if 
+escribir 
+leer imput 
+finmientras
+mientras while
+o or 
+y and 
+hacer
+para for 
+finPara
+azar randint
+entonces
+sino else
+finsi 
+finproceso
+hasta in 
