@@ -4,7 +4,7 @@
 # 'r' ----> la 'r' para abrir un archivo en modo lectura
 
 
-#funcion para eliminar las lineas vacias 
+#funcion para eliminar las lineas vacias del pseudocodigo, esto por temas de practicidad...
 def clearBlankline(infile,outfile):
 	infopen=open(infile,'r',encoding='utf-8')
 	outopen=open(outfile,'w',encoding='utf-8')
@@ -17,24 +17,35 @@ def clearBlankline(infile,outfile):
 	infopen.close()
 	outopen.close()
 
-
-tablaLexica = 'tablaLexica.txt'
-pseudocodigo = 'pseudocodigo.txt'
-psAuxiliar = 'psAuxiliar.txt'
-codigoPython = 'codigoPython.py'
-f = open(tablaLexica, 'r')
-h = open(codigoPython, 'r')
-clearBlankline(pseudocodigo, psAuxiliar)
-g = open(psAuxiliar, 'r')
+tablaLexica = 'tablaLexica.txt' # archivo txt de la tabla lexica 
+pseudocodigo = 'pseudocodigo.txt' #archvio txt del pseucodigo 
+psAuxiliar = 'psAuxiliar.txt' #archivo auxiliar txt donde vamos a guardar el pseudocodigo pero sin espacios, 
+                              #y el que vamos a usar para trabajar a lo largo de nuestro programa 
+codigoPython = 'codigoPython.py' #archivo .py en donde vamos a guardar el pseudocodigo ya traducido a python
+f = open(tablaLexica, 'r') #abrimos la tabla lexica en modo lectura 
+h = open(codigoPython, 'r') #abrimos el archivo "codigoPython" en modo lectura 
+clearBlankline(pseudocodigo, psAuxiliar) #invocamos la funcion para borrar las linas en blanco del pseudocodigo
+                                         #y guardamos el pseudocodigo sin lineas en blanco en "psAuxiliar"
+g = open(psAuxiliar, 'r') #abrimos el archivo "psAuxiliar en modo lectura"
 lpsAuxiliar = g.readlines()
 lTablaLexica = f.readlines()
 lcodigoPython = h.readlines()
 iniLineaUno = True
 comentario = False
 palabras = []
+encontrada = False
 
 
-for i in range(3):
+	
+#este primer ciclo for se encarga de importar las librerias necesarias en python 
+#para las palabras que así lo requieran 			
+for k in range(len(lpsAuxiliar)):
+	if "azar" in lpsAuxiliar[k]:
+		h = open(codigoPython, 'w')
+		h.write("import random\n")
+		iniLineaUno = False
+
+for i in range(5):
 	cadenaLps = lpsAuxiliar[i] #contiene una linea del pseudocodigo en la posicion i 
 	cadenaTlexica = lTablaLexica[0] #contienen una linea de la tabla lexica en la posicion i 
 	esComentario = cadenaLps[0:2]
@@ -51,15 +62,34 @@ for i in range(3):
 	palabras = cadenaLps.split()
 	if comentario == False:		
 		for j in range(len(palabras)):
+			encontrada = False
 			for k in range(len(lTablaLexica)):
 				claveLexica = lTablaLexica[k]
 				claveLexica = claveLexica.split()
 				if palabras[j].upper() == claveLexica[0].upper():
-					print("si es")
+					if palabras[j].upper() == "AZAR":
+						azar = palabras[j+1:]
+						h = open(codigoPython, 'a')
+						h.write(claveLexica[1])
+
+						encontrada = True
+					else:	
+						h = open(codigoPython, 'a')
+						h.write(claveLexica[1]+" ")
+						encontrada = True
+			if encontrada == False:
+				if palabras[j-1].upper() == "PROCESO":
+					h = open(codigoPython, 'a')
+					h.write(palabras[j]+"():")
+					encontrada = True
+				else:		
+					h = open(codigoPython, 'a')
+					h.write(palabras[j]+" ")
+		h = open(codigoPython, 'a')
+		h.write("\n")			
 
 
 
-#len(lpsAuxiliar)
 	
 
 

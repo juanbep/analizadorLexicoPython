@@ -43,9 +43,9 @@ y and
 hacer
 para for 
 finPara
-azar randint
+azar random.randint
 entonces
 sino else
 finsi 
 finproceso
-hasta in 
+hasta in
