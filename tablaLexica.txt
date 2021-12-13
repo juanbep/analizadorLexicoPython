@@ -34,7 +34,7 @@ t t
 <- =
 proceso def
 si if 
-escribir 
+escribir print 
 leer imput 
 finmientras
 mientras while

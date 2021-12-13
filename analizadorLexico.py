@@ -19,13 +19,11 @@ def clearBlankline(infile,outfile):
 
 tablaLexica = 'tablaLexica.txt' # archivo txt de la tabla lexica 
 pseudocodigo = 'pseudocodigo.txt' #archvio txt del pseucodigo 
-psAuxiliar = 'psAuxiliar.txt' #archivo auxiliar txt donde vamos a guardar el pseudocodigo pero sin espacios, 
-                              #y el que vamos a usar para trabajar a lo largo de nuestro programa 
+psAuxiliar = 'psAuxiliar.txt' #archivo auxiliar txt donde vamos a guardar el pseudocodigo pero sin espacios, y el que vamos a usar para trabajar a lo largo de nuestro programa 
 codigoPython = 'codigoPython.py' #archivo .py en donde vamos a guardar el pseudocodigo ya traducido a python
 f = open(tablaLexica, 'r') #abrimos la tabla lexica en modo lectura 
 h = open(codigoPython, 'r') #abrimos el archivo "codigoPython" en modo lectura 
-clearBlankline(pseudocodigo, psAuxiliar) #invocamos la funcion para borrar las linas en blanco del pseudocodigo
-                                         #y guardamos el pseudocodigo sin lineas en blanco en "psAuxiliar"
+clearBlankline(pseudocodigo, psAuxiliar) #invocamos la funcion para borrar las linas en blanco del pseudocodigo y guardamos el pseudocodigo sin lineas en blanco en "psAuxiliar"
 g = open(psAuxiliar, 'r') #abrimos el archivo "psAuxiliar en modo lectura"
 lpsAuxiliar = g.readlines()
 lTablaLexica = f.readlines()
@@ -45,7 +43,7 @@ for k in range(len(lpsAuxiliar)):
 		h.write("import random\n")
 		iniLineaUno = False
 
-for i in range(5):
+for i in range(6):
 	cadenaLps = lpsAuxiliar[i] #contiene una linea del pseudocodigo en la posicion i 
 	cadenaTlexica = lTablaLexica[0] #contienen una linea de la tabla lexica en la posicion i 
 	esComentario = cadenaLps[0:2]
@@ -81,13 +79,18 @@ for i in range(5):
 				if palabras[j-1].upper() == "PROCESO":
 					h = open(codigoPython, 'a')
 					h.write(palabras[j]+"():")
-					encontrada = True
+				elif palabras[j-1].upper() == "ESCRIBIR":
+					indice = j
+					cadena = palabras[indice:]
+					strC = " ".join(cadena)
+					h = open(codigoPython, 'a')
+					h.write("("+strC+")")
+					break
 				else:		
 					h = open(codigoPython, 'a')
 					h.write(palabras[j]+" ")
 		h = open(codigoPython, 'a')
 		h.write("\n")			
-
 
 
 	
