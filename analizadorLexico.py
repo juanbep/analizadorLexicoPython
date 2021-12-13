@@ -43,7 +43,7 @@ for k in range(len(lpsAuxiliar)):
 		h.write("import random\n")
 		iniLineaUno = False
 
-for i in range(6):
+for i in range(8):
 	cadenaLps = lpsAuxiliar[i] #contiene una linea del pseudocodigo en la posicion i 
 	cadenaTlexica = lTablaLexica[0] #contienen una linea de la tabla lexica en la posicion i 
 	esComentario = cadenaLps[0:2]
@@ -66,11 +66,13 @@ for i in range(6):
 				claveLexica = claveLexica.split()
 				if palabras[j].upper() == claveLexica[0].upper():
 					if palabras[j].upper() == "AZAR":
-						azar = palabras[j+1:]
 						h = open(codigoPython, 'a')
 						h.write(claveLexica[1])
-
 						encontrada = True
+					elif palabras[j].upper() == "LEER":
+						h = open(codigoPython, 'a')
+						h.write(palabras[j+1]+" = "+claveLexica[1]+"()")
+						encontrada = True	
 					else:	
 						h = open(codigoPython, 'a')
 						h.write(claveLexica[1]+" ")
@@ -85,6 +87,8 @@ for i in range(6):
 					strC = " ".join(cadena)
 					h = open(codigoPython, 'a')
 					h.write("("+strC+")")
+					break
+				elif palabras[j-1].upper() == "LEER":
 					break
 				else:		
 					h = open(codigoPython, 'a')
