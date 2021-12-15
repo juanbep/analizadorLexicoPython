@@ -34,6 +34,14 @@ palabras = []
 encontrada = False
 
 
+def buscarPalabra(palabra):
+	for k in range(len(lTablaLexica)):
+		claveLexica = lTablaLexica[k]
+		claveLexica = claveLexica.split()
+		if palabra.upper() == claveLexica[0].upper():
+			return True
+
+
 	
 #este primer ciclo for se encarga de importar las librerias necesarias en python 
 #para las palabras que así lo requieran 			
@@ -43,7 +51,7 @@ for k in range(len(lpsAuxiliar)):
 		h.write("import random\n")
 		iniLineaUno = False
 
-for i in range(8):
+for i in range(22):
 	cadenaLps = lpsAuxiliar[i] #contiene una linea del pseudocodigo en la posicion i 
 	cadenaTlexica = lTablaLexica[0] #contienen una linea de la tabla lexica en la posicion i 
 	esComentario = cadenaLps[0:2]
@@ -73,6 +81,8 @@ for i in range(8):
 						h = open(codigoPython, 'a')
 						h.write(palabras[j+1]+" = "+claveLexica[1]+"()")
 						encontrada = True	
+					elif palabras[j] == '"' and buscarPalabra(palabras[j-1]) == False:
+						print("si es")						
 					else:	
 						h = open(codigoPython, 'a')
 						h.write(claveLexica[1]+" ")
@@ -80,17 +90,16 @@ for i in range(8):
 			if encontrada == False:
 				if palabras[j-1].upper() == "PROCESO":
 					h = open(codigoPython, 'a')
-					h.write(palabras[j]+"():")
-				elif palabras[j-1].upper() == "ESCRIBIR":
-					indice = j
-					cadena = palabras[indice:]
-					strC = " ".join(cadena)
-					h = open(codigoPython, 'a')
-					h.write("("+strC+")")
-					break
+					h.write(palabras[j]+"() :")
 				elif palabras[j-1].upper() == "LEER":
 					break
-				else:		
+				elif palabras[j-1].upper() == "SI" or palabras[j-1] == ">" or palabras[j-1] == "<":
+					h = open(codigoPython, 'a')
+					h.write("str("+palabras[j]+") ")
+				elif palabras[j-1] == "+":
+					h = open(codigoPython, 'a')
+					h.write("str("+palabras[j]+") ")	
+				else:			
 					h = open(codigoPython, 'a')
 					h.write(palabras[j]+" ")
 		h = open(codigoPython, 'a')

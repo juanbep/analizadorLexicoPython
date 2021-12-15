@@ -3,10 +3,11 @@
 * *
 + +
 - -
-= =
+= ==
 ! !
 < <
 > >
+<> !=
 & &
 $ $
 # #
@@ -19,7 +20,7 @@ $ $
 ] ]
 _ _
 % %
-" "
+" ("
 ' '
 \ \
 n n
@@ -35,8 +36,8 @@ t t
 proceso def
 si if 
 escribir print 
-leer imput 
-finmientras
+leer input 
+finmientras #finmientras
 mientras while
 o or 
 y and 
@@ -45,7 +46,7 @@ para for
 finPara
 azar random.randint
 entonces :
-sino else
-finsi 
+sino else:
+finsi #finsi
 finproceso
 hasta in
