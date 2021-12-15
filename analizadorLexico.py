@@ -79,14 +79,15 @@ for i in range(22):
 				elif palabras[j-1].upper() == "SI" or palabras[j-1] == ">" or palabras[j-1] == "<":
 					h = open(codigoPython, 'a')
 					h.write("str("+palabras[j]+") ")
-				elif palabras[j-1] == "+":
+				elif palabras[j-1] == "+" and palabras[j-1]:
 					h = open(codigoPython, 'a')
 					h.write("str("+palabras[j]+") ")	
 				else:			
 					h = open(codigoPython, 'a')
 					h.write(palabras[j]+" ")
 		h = open(codigoPython, 'a')
-		h.write("\n")			
+		h.write("\n")
+
 
 
 
