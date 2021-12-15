@@ -1,8 +1,3 @@
-# 'w' ----> la 'w' crea o sobrescribe el archivo con la actulizacion que le hayamos hecho  
-# 'a' ----> la 'a' agrega una nueva linea
-# 'x' ----> la 'x' crea un archivo desde cero
-# 'r' ----> la 'r' para abrir un archivo en modo lectura
-
 
 #funcion para eliminar las lineas vacias del pseudocodigo, esto por temas de practicidad...
 def clearBlankline(infile,outfile):
@@ -32,16 +27,6 @@ iniLineaUno = True
 comentario = False
 palabras = []
 encontrada = False
-
-
-def buscarPalabra(palabra):
-	for k in range(len(lTablaLexica)):
-		claveLexica = lTablaLexica[k]
-		claveLexica = claveLexica.split()
-		if palabra.upper() == claveLexica[0].upper():
-			return True
-
-
 	
 #este primer ciclo for se encarga de importar las librerias necesarias en python 
 #para las palabras que así lo requieran 			
@@ -80,9 +65,7 @@ for i in range(22):
 					elif palabras[j].upper() == "LEER":
 						h = open(codigoPython, 'a')
 						h.write(palabras[j+1]+" = "+claveLexica[1]+"()")
-						encontrada = True	
-					elif palabras[j] == '"' and buscarPalabra(palabras[j-1]) == False:
-						print("si es")						
+						encontrada = True					
 					else:	
 						h = open(codigoPython, 'a')
 						h.write(claveLexica[1]+" ")
@@ -104,10 +87,6 @@ for i in range(22):
 					h.write(palabras[j]+" ")
 		h = open(codigoPython, 'a')
 		h.write("\n")			
-
-
-	
-
 
 
 
